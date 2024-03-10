@@ -1,0 +1,29 @@
+version: "3.8"
+name: data-streaming
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack:3.2.0
+    ports:
+      - 127.0.0.1:4566:4566            # LocalStack Gateway
+      - 127.0.0.1:4510-4559:4510-4559  # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=1
+      - PROVIDER_OVERRIDE_CLOUDWATCH=v2
+      - DISABLE_EVENTS=1
+    volumes:
+      - ./localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+     - 3000:3000
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+volumes:
+  grafana-storage: {}

@@ -1,0 +1,314 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "event": {
+            "type": "object",
+            "properties": {
+                "property": {
+                    "type": "object",
+                    "properties": {
+                        "call_id": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "call_duration": {
+                            "type": "string",
+                            "pattern": "^\\d+$"
+                        },
+                        "call_status": {
+                            "type": "string",
+                            "enum": [
+                                "completed",
+                                "ongoing",
+                                "failed"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "call_id",
+                        "call_duration",
+                        "call_status"
+                    ]
+                },
+                "super_property": {
+                    "type": "object",
+                    "properties": {
+                        "source": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string"
+                        },
+                        "producer": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "timestamp": {
+                            "type": "string",
+                            "pattern": "^\\d+$"
+                        }
+                    },
+                    "required": [
+                        "source",
+                        "type",
+                        "producer",
+                        "name",
+                        "timestamp"
+                    ]
+                }
+            },
+            "required": [
+                "property",
+                "super_property"
+            ]
+        },
+        "user": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "object",
+                    "properties": {
+                        "coins": {
+                            "type": "string",
+                            "pattern": "^\\d+$"
+                        },
+                        "is_logged_in": {
+                            "type": "string",
+                            "enum": [
+                                "true",
+                                "false"
+                            ]
+                        },
+                        "language": {
+                            "type": "string"
+                        },
+                        "language_mode": {
+                            "type": "string"
+                        },
+                        "country_code": {
+                            "type": "string"
+                        },
+                        "tz": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "coins",
+                        "is_logged_in",
+                        "language",
+                        "language_mode",
+                        "country_code",
+                        "tz"
+                    ]
+                },
+                "device_segment": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "user_id",
+                "state",
+                "device_segment"
+            ]
+        },
+        "platform": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "type": "object",
+                    "properties": {
+                        "integer": {
+                            "type": "string",
+                            "pattern": "^\\d+$"
+                        },
+                        "string": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "integer",
+                        "string"
+                    ]
+                },
+                "code": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "version",
+                "code",
+                "type"
+            ]
+        },
+        "geo_location": {
+            "type": "null"
+        },
+        "device": {
+            "type": "object",
+            "properties": {
+                "a_id": {
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "state": {
+                    "type": "object",
+                    "properties": {
+                        "is_background": {
+                            "type": "string",
+                            "enum": [
+                                "true",
+                                "false"
+                            ]
+                        },
+                        "is_online": {
+                            "type": "string",
+                            "enum": [
+                                "true",
+                                "false"
+                            ]
+                        },
+                        "is_playing_music": {
+                            "type": "string",
+                            "enum": [
+                                "true",
+                                "false"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "is_background",
+                        "is_online",
+                        "is_playing_music"
+                    ]
+                },
+                "hardware": {
+                    "type": "object",
+                    "properties": {
+                        "model_name": {
+                            "type": "string"
+                        },
+                        "brand_name": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "model_name",
+                        "brand_name",
+                        "type"
+                    ]
+                },
+                "software": {
+                    "type": "object",
+                    "properties": {
+                        "mobile": {
+                            "type": "object",
+                            "properties": {
+                                "version": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "version",
+                                "name"
+                            ]
+                        },
+                        "web": {
+                            "type": "null"
+                        }
+                    },
+                    "required": [
+                        "mobile",
+                        "web"
+                    ]
+                },
+                "ip": {
+                    "type": "object",
+                    "properties": {
+                        "ipv4": {
+                            "type": "string",
+                            "format": "ipv4"
+                        },
+                        "ipv6": {
+                            "type": "string",
+                            "format": "ipv6"
+                        }
+                    },
+                    "required": [
+                        "ipv4",
+                        "ipv6"
+                    ]
+                },
+                "system_language": {
+                    "type": "string"
+                },
+                "system_id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "a_id",
+                "state",
+                "hardware",
+                "software",
+                "ip",
+                "system_language",
+                "system_id"
+            ]
+        },
+        "session": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "format": "uuid"
+                }
+            },
+            "required": [
+                "number",
+                "id"
+            ]
+        },
+        "referral": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "string"
+                },
+                "user_code": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "user_id",
+                "user_code"
+            ]
+        }
+    },
+    "required": [
+        "event",
+        "user",
+        "platform",
+        "geo_location",
+        "device",
+        "session",
+        "referral"
+    ]
+}

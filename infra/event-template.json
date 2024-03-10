@@ -1,0 +1,71 @@
+{
+    "event": {
+      "property": {
+        "call_id": "abcdef12-3456-7890-abcd-ef1234567890",
+        "call_duration": "45",
+        "call_status": "completed"
+      },
+      "super_property": {
+        "source": "mandir",
+        "type": "purchase",
+        "producer": "user",
+        "name": "astrology_session_purchase",
+        "timestamp": "1708700620952"
+      }
+    },
+    "user": {
+      "user_id": "567",
+      "state": {
+        "coins": "120",
+        "is_logged_in": "false",
+        "language": "en",
+        "language_mode": "en",
+        "country_code": "US",
+        "tz": "America/New_York"
+      },
+      "device_segment": "42"
+    },
+    "platform": {
+      "version": {
+        "integer": "226",
+        "string": "7.1.0"
+      },
+      "code": "com.mandir",
+      "type": "iOS"
+    },
+    "geo_location": null,
+    "device": {
+      "a_id": "9abcde21-a08f-1794-96a9-a17bb227b793",
+      "state": {
+        "is_background": "true",
+        "is_online": "false",
+        "is_playing_music": "true"
+      },
+      "hardware": {
+        "model_name": "iPhone12",
+        "brand_name": "Apple",
+        "type": "Mobile"
+      },
+      "software": {
+        "mobile": {
+          "version": "14",
+          "name": "iOS"
+        },
+        "web": null
+      },
+      "ip": {
+        "ipv4": "192.168.1.1",
+        "ipv6": "2401:db00:2110:3004:0:0:0:1"
+      },
+      "system_language": "Spanish",
+      "system_id": "c9gh5764f1761cd8"
+    },
+    "session": {
+      "number": "5",
+      "id": "c44fc60b-1730-400c-a0f6-c3f2a3537238"
+    },
+    "referral": {
+      "user_id": "123",
+      "user_code": "XYZREF123"
+    }
+  }

@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+awscli-local = "*"
+faker = "*"
+boto3 = "*"
+duckdb = "*"
+terraform-local = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
