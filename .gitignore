@@ -2,6 +2,7 @@ aws/
 aws*.*
 localstack-cli-*
 */jq
+lambda.zip
 
 # Local .terraform directories
 **/.terraform/*
