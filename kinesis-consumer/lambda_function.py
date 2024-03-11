@@ -1,5 +1,6 @@
 import json
 import base64
+import logging
 
 
 class FirehoseOutputRecordStatuses:
@@ -18,6 +19,14 @@ def lambda_handler(event, context):
         try:
             payload["user"]["user_id"] = int(payload["user"]["user_id"])
         except Exception:
+            logging.exception("Error parsing 'user.user_id' as an integer")
+            # catch any issues and send them off to the error queue / bucket from Firehose
+            result = FirehoseOutputRecordStatuses.PROCESSING_FAILED
+
+        try:
+            payload["referral"]["user_id"] = int(payload["referral"]["user_id"])
+        except Exception:
+            logging.exception("Error parsing 'referral.user_id' as an integer")
             # catch any issues and send them off to the error queue / bucket from Firehose
             result = FirehoseOutputRecordStatuses.PROCESSING_FAILED
 
