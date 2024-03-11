@@ -29,7 +29,7 @@ def put_record_into_kinesis(data: dict, key: str):
 def main():
     try:
         while True:
-            now = round(datetime.datetime.now().timestamp())
+            now = round(datetime.datetime.now().replace(second=0, microsecond=0).timestamp())
             event_template = {
                 "event": {
                     "property": {
@@ -55,7 +55,7 @@ def main():
                         "country_code": fake.country_code(representation="alpha-2"),
                         "tz": fake.timezone()
                     },
-                    "device_segment": fake.random_number(digits=2)
+                    "device_segment": str(fake.random_number(digits=2))
                 },
                 "platform": {
                     "version": {
@@ -97,7 +97,7 @@ def main():
                     "id": fake.uuid4()
                 },
                 "referral": {
-                    "user_id": fake.random_number(digits=3),
+                    "user_id": str(fake.random_number(digits=3)),
                     "user_code": fake.uuid4()
                 }
             }
