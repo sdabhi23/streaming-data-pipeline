@@ -13,7 +13,7 @@ services:
       - PROVIDER_OVERRIDE_CLOUDWATCH=v2
       - DISABLE_EVENTS=1
     volumes:
-      - ./localstack-data:/var/lib/localstack
+      - localstack-storage:/var/lib/localstack
       - /var/run/docker.sock:/var/run/docker.sock
 
   grafana:
@@ -27,3 +27,4 @@ services:
 
 volumes:
   grafana-storage: {}
+  localstack-storage: {}
