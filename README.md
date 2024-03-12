@@ -1,6 +1,9 @@
 # Data Streaming Assignment
 
-## Setup Infrastructure
+## Setup Infrastructure on local environment
+
+> [!WARNING]
+> The record format presented to the transformation lambda by `localstack` is not the same as the actual one on AWS so things can error out on local.
 
 Install AWS cli
 
@@ -39,9 +42,14 @@ Create the IAM user for the script
 
 ```bash
 awslocal iam create-user --user-name stream-user
-touch ./infra/credentials.json
 awslocal iam create-access-key --user-name stream-user > ./infra/credentials.json
 
 export AWS_ACCESS_KEY_ID=$(cat infra/credentials.json | ./infra/jq '.AccessKey.AccessKeyId')
 export AWS_SECRET_ACCESS_KEY=$(cat infra/credentials.json | ./infra/jq '.AccessKey.SecretAccessKey')
+```
+
+Start record ingestion
+
+```bash
+python producer.py
 ```
