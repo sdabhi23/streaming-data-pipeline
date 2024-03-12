@@ -3,9 +3,12 @@ resource "aws_kinesis_firehose_delivery_stream" "firehose_processing_stream" {
   destination = "extended_s3"
 
   extended_s3_configuration {
-    role_arn   = aws_iam_role.firehose_role.arn
-    bucket_arn = aws_s3_bucket.output_bucket.arn
+    role_arn       = aws_iam_role.firehose_role.arn
+    bucket_arn     = aws_s3_bucket.output_bucket.arn
     file_extension = ".jsonl"
+
+    prefix              = "data/day=!{timestamp:yyyy-MM-dd}/"
+    error_output_prefix = "errors/day=!{timestamp:yyyy-MM-dd}/!{firehose:error-output-type}/"
 
     cloudwatch_logging_options {
       enabled         = "true"
@@ -22,6 +25,16 @@ resource "aws_kinesis_firehose_delivery_stream" "firehose_processing_stream" {
         parameters {
           parameter_name  = "LambdaArn"
           parameter_value = "${aws_lambda_function.lambda_processor.arn}:$LATEST"
+        }
+
+        parameters {
+          parameter_name  = "BufferSizeInMBs"
+          parameter_value = "1"
+        }
+
+        parameters {
+          parameter_name  = "BufferIntervalInSeconds"
+          parameter_value = "120"
         }
       }
     }
@@ -72,4 +85,8 @@ resource "aws_lambda_function" "lambda_processor" {
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
   handler          = "lambda_function.lambda_handler"
   runtime          = "python3.9"
+}
+
+resource "aws_s3_bucket" "output_bucket" {
+  bucket = "appsforbharat-assignment-shrey"
 }

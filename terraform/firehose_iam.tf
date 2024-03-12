@@ -48,6 +48,12 @@ resource "aws_iam_role_policy_attachment" "firehose_s3" {
   policy_arn = aws_iam_policy.firehose_s3.arn
 }
 
+resource "aws_iam_policy_attachment" "firehose_lambda" {
+  name       = "lambda_cloudwatch_logs"
+  roles      = [aws_iam_role.firehose_role.name]
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaRole"
+}
+
 resource "aws_iam_policy" "put_record" {
   policy = <<EOF
 {
@@ -56,8 +62,7 @@ resource "aws_iam_policy" "put_record" {
         {
             "Effect": "Allow",
             "Action": [
-                "firehose:PutRecord",
-                "firehose:PutRecordBatch"
+                "firehose:*"
             ],
             "Resource": [
                 "${aws_kinesis_firehose_delivery_stream.firehose_processing_stream.arn}"
