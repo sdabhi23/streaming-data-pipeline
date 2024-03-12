@@ -21,7 +21,7 @@ def put_record_into_kinesis(data: dict, key: str):
 
         probability = round(random.random() * 100)
 
-        if probability < 50:
+        if probability < 15:
             random_length = round(random.random() * len(data_string))
             data_string = data_string[:random_length]
 
