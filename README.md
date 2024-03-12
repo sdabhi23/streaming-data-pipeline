@@ -9,7 +9,7 @@
 * It is assumed that the data being warehoused in S3 does not need to be converted into a columnar data format for the purposes of this assignment.
 * Cloudwatch is the primary monitoring, log aggregation and APM tool for this assignment.
 
-## Setup Infrastructure on local environment
+## Setup Infrastructure on Local Environment
 
 > [!WARNING]
 >
