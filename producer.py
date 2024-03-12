@@ -1,11 +1,12 @@
-import datetime
-import boto3
 import json
 import time
+import boto3
+import random
+import datetime
 from faker import Faker
 
 # Initialize the Kinesis client
-kinesis_client = boto3.client('kinesis', endpoint_url='http://localhost:4566')  # Assuming LocalStack is running on default port
+kinesis_client = boto3.client('kinesis')  # Assuming LocalStack is running on default port
 
 # Define the name of the Kinesis stream
 stream_name = 'AppsForBharat'
@@ -16,9 +17,17 @@ fake = Faker()
 # Define a function to put records into the Kinesis stream
 def put_record_into_kinesis(data: dict, key: str):
     try:
+        data_string = json.dumps(data)
+
+        probability = round(random.random() * 100)
+
+        if probability < 50:
+            random_length = round(random.random() * len(data_string))
+            data_string = data_string[:random_length]
+
         response = kinesis_client.put_record(
             StreamName=stream_name,
-            Data=json.dumps(data),
+            Data=data_string,
             PartitionKey=key,
         )
         print("Record put successfully:", response)
