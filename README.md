@@ -1,9 +1,16 @@
 # Data Streaming Assignment
 
+## Clarifications
+
+* It is assumed that the data being warehoused in S3 does not need to be converted into a columnar data format for the purposes of this assignment.
+* Cloudwatch is the primary monitoring, log aggregation and APM tool for this assignment.
+
 ## Setup Infrastructure on local environment
 
 > [!WARNING]
-> The record format presented to the transformation lambda by `localstack` is not the same as the actual one on AWS so things can error out on local.
+>
+> * The record format presented to the transformation lambda by `localstack` is not the same as the actual one on AWS so things can error out on local.
+> * To connect to your actual AWS account please add your account id to the `allowed_account_ids` list in `terraform/main.tf`.
 
 Install AWS cli
 
