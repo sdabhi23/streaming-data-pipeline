@@ -1,5 +1,9 @@
 # Data Streaming Assignment
 
+## Architecture Diagram
+
+![Architecture Diagram](architecture.png "Title")
+
 ## Clarifications
 
 * It is assumed that the data being warehoused in S3 does not need to be converted into a columnar data format for the purposes of this assignment.
