@@ -16,15 +16,5 @@ services:
       - localstack-storage:/var/lib/localstack
       - /var/run/docker.sock:/var/run/docker.sock
 
-  grafana:
-    image: grafana/grafana-oss
-    container_name: grafana
-    restart: unless-stopped
-    ports:
-     - 3000:3000
-    volumes:
-      - grafana-storage:/var/lib/grafana
-
 volumes:
-  grafana-storage: {}
   localstack-storage: {}
